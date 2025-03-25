@@ -1,7 +1,23 @@
 from langchain_unstructured import __all__
 
 EXPECTED_ALL = [
-    "UnstructuredLoader",
+    "UnstructuredCSVLoader",
+    "UnstructuredEPubLoader",
+    "UnstructuredEmailLoader",
+    "UnstructuredExcelLoader",
+    "UnstructuredHTMLLoader",
+    "UnstructuredImageLoader",
+    "UnstructuredMarkdownLoader",
+    "UnstructuredODTLoader",
+    "UnstructuredOrgModeLoader",
+    "UnstructuredPDFLoader",
+    "UnstructuredPowerPointLoader",
+    "UnstructuredRSTLoader",
+    "UnstructuredRTFLoader",
+    "UnstructuredTSVLoader",
+    "UnstructuredURLLoader",
+    "UnstructuredWordDocumentLoader",
+    "UnstructuredXMLLoader",
     "__version__",
 ]
 

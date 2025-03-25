@@ -1,0 +1,17 @@
+from pathlib import Path
+
+import pytest
+
+from langchain_unstructured import UnstructuredCHMLoader
+
+EXAMPLE_DIRECTORY = Path(__file__).parent.parent / "examples"
+
+
+@pytest.mark.local
+def test_unstructured_chm_loader() -> None:
+    """Test unstructured loader."""
+    file_path = EXAMPLE_DIRECTORY / "example.chm"
+    loader = UnstructuredCHMLoader(file_path, mode="elements")
+    docs = loader.load()
+
+    assert len(docs) == 1

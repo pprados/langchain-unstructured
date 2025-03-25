@@ -5,12 +5,18 @@ This package contains the LangChain integration with Unstructured
 ## Installation
 
 ```bash
-pip install -U langchain-unstructured
+pip install -U 'langchain-unstructured[all_docs]'
+```
+or, for only specific file type (csv, doc, docx, epub, image, md, odt, org, pdf, ppt, 
+pptx, rtf, tsv, xlsx):
+```bash
+pip install -U 'langchain-unstructured[pdf,csv]'
 ```
 
 And you should configure credentials by setting the following environment variables:
 
 ```bash
+pip install -U 'langchain-unstructured[client]'
 export UNSTRUCTURED_API_KEY="your-api-key"
 ```
 
@@ -20,11 +26,11 @@ Partition and load files using either the `unstructured-client` sdk and the
 Unstructured API or locally using the `unstructured` library.
 
 API:
-To partition via the Unstructured API `pip install unstructured-client` and set
-`partition_via_api=True` and define `api_key`. If you are running the unstructured API
-locally, you can change the API rule by defining `url` when you initialize the
-loader. The hosted Unstructured API requires an API key. See the links below to
-learn more about our API offerings and get an API key.
+To partition via the Unstructured API set `partition_via_api=True` and define 
+`api_key`. If you are running the unstructured API locally, you can change the API rule 
+by defining `url` when you initialize the loader. The hosted Unstructured API requires 
+an API key. See the links below to learn more about our API offerings and get an 
+API key.
 
 Local:
 By default the file loader uses the Unstructured `partition` function and will
@@ -37,8 +43,7 @@ Unstructured kwargs to the loader to configure different unstructured settings.
 
 Setup:
 ```bash
-    pip install -U langchain-unstructured
-    pip install -U unstructured-client
+    pip install -U 'langchain-unstructured[client]'
     export UNSTRUCTURED_API_KEY="your-api-key"
 ```
 
@@ -47,13 +52,35 @@ Instantiate:
 from langchain_unstructured import UnstructuredLoader
 
 loader = UnstructuredLoader(
-    file_path = ["example.pdf", "fake.pdf"],
+    file_path = ["example.pdf", "readme.docx"],
     api_key=UNSTRUCTURED_API_KEY,
     partition_via_api=True,
     chunking_strategy="by_title",
     strategy="fast",
 )
 ```
+It is preferable to use GenericLoader.
+```python
+from langchain_community.document_loaders import FileSystemBlobLoader
+from langchain_community.document_loaders.generic import GenericLoader
+from langchain_unstructured.parsers.unstructured import UnstructuredParser
+
+UNSTRUCTURED_API_KEY="..."
+
+loader=GenericLoader(
+    blob_loader=FileSystemBlobLoader( # or CloudBlobLoader
+        path="examples/",
+        glob="**/*.pdf",
+    ),
+    blob_parser=UnstructuredParser(
+        api_key=UNSTRUCTURED_API_KEY,
+        partition_via_api=True,
+        chunking_strategy="by_title",
+        strategy="fast",        
+    )
+)
+```
+
 
 Load:
 ```python
@@ -61,7 +88,7 @@ docs = loader.load()
 
 print(docs[0].page_content[:100])
 print(docs[0].metadata)
-```
+```$
 
 References
 ----------

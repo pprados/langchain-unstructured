@@ -1,4 +1,5 @@
-"""Unstructured document loader."""
+# This file is a copy of the historical version in this project, to ensure that
+# the refactoring is comparable.
 
 from __future__ import annotations
 
@@ -21,6 +22,7 @@ logger = logging.getLogger(__file__)
 _DEFAULT_URL = "https://api.unstructuredapp.io/general/v0/general"
 
 
+# Old version. To test the non-regression of the code.
 class UnstructuredLoader(BaseLoader):
     """Unstructured document loader interface.
 

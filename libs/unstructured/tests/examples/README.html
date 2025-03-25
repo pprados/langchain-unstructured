@@ -1,0 +1,20 @@
+<h1 id="example-docs">Example Docs</h1>
+<p>The sample docs directory contains the following files:</p>
+<ul>
+<li><code>example-10k.html</code> - A 10-K SEC filing in HTML format</li>
+<li><code>layout-parser-paper.pdf</code> - A PDF copy of the layout parser paper</li>
+<li><code>factbook.xml</code>/<code>factbook.xsl</code> - Example XML/XLS files that you can
+use to test stylesheets</li>
+</ul>
+<p>These documents can be used to test out the parsers in the library. In
+addition, here are instructions for pulling in some sample docs that are
+too big to store in the repo.</p>
+<h2 id="xbrl-10-k">XBRL 10-K</h2>
+<p>You can get an example 10-K in inline XBRL format using the following
+<code>curl</code>. Note, you need to have the user agent set in the header or the
+SEC site will reject your request.</p>
+<pre><code class="lang-bash">curl -O \
+  -A <span class="hljs-string">'${organization} ${email}'</span>
+  https:<span class="hljs-regexp">//</span>www.sec.gov<span class="hljs-regexp">/Archives/</span>edgar<span class="hljs-regexp">/data/</span><span class="hljs-number">311094</span><span class="hljs-regexp">/000117184321001344/</span><span class="hljs-number">0001171843</span>-<span class="hljs-number">21</span>-<span class="hljs-number">001344</span>.txt
+</code></pre>
+<p>You can parse this document using the HTML parser.</p>

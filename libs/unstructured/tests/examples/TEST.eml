@@ -1,0 +1,411 @@
+Delivered-To: philippe.prados@gfw.accenture.com
+Received: by 2002:a5d:6b09:0:b0:391:3ec6:d5e1 with SMTP id v9csp1427490wrw;
+        Mon, 24 Mar 2025 04:58:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AJvYcCV0QZakUFoNaFm464C5S8R+clsdM+08TZniLW7euRwoKDedrINKWtMmHSC+GBh0xUxs7a5SV3KJg9RwevHLhB8=@gfw.accenture.com
+X-Google-Smtp-Source: AGHT+IF24xzQ1ge0hYKfRzj2xVxe0x01AdDD5GOF0A/DMjASvc6bZEKzvegnNPG8CLkV+yEB0ehO
+X-Received: by 2002:a05:6e02:3f08:b0:3d4:3fed:81f7 with SMTP id e9e14a558f8ab-3d5961cb366mr116369915ab.19.1742817529524;
+        Mon, 24 Mar 2025 04:58:49 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1742817529; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=Yvs3pWFGitpo4ycOz54uX+YXtnlYzNdpeDmLRD2W9im31LIJukMOwxnMYEbq+LdP8R
+         D6g8rv01+h9gPQql57wpKuolOSK21cmHhesr/5WoesK05Oig02rtZXF4623bWqvgj9rR
+         RPxkqcQ6I0y24r1nfJB/SvgmnZooSdrBThGws2hIBteAbKzorBn0g4dDQ7tpGLSE/gXd
+         5o4EWZ7TLZ3zDgCBAtlGRw7j2jxEWs+ru/yrw5w+kFF55eQ/2vxybTlMoE8ALPosnlf0
+         RQgVmfT0RCTTOOjY2+Gu4rb12j2xn3ddjTkK1KgImXoMyNukyGFpAmr4nc1uEd1nwzdN
+         LDIw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:auto-submitted:resent-from:dkim-signature
+         :authentication-results-original:message-id:date:thread-index
+         :thread-topic:subject:to:from:dkim-signature;
+        bh=QQC4KlJXeuh9PdFs458q+NgqUNA57whlblBl5BER8dI=;
+        fh=mX5gXmwZ2CunKidmlp5T6loLcYlmNJYfII4pHbfwdxQ=;
+        b=cpMfpfpor/wBtIuE7ZCNsnjm8eutE+P51e0UlgZrBNnbP6aZ/mYPGkKDSjJJMoExbi
+         707AbrZB8/T8mF+KnO84mXwzDcDUkNEpjibbnHdiS8D6BmuazYYmOmeF5YdZyL93155S
+         mPaEVDUgxmKVwwR7eUvVpGbLFoJIdRSrC//IedkAQfabDdV1rhZeYFqaKRuTmhrmMwcC
+         yoaMdEwYWRjlocgxGFiHzBSVDC6nQYpr8EME/SYu3L6UYPp+I6x8zdfJIzco2QO/5f2k
+         a1qk68GVxZMGRlBsZtyXM7SnWleFcncX8AF3s770ZcJtINN4CKslgbazShP93hMlBKWa
+         ykCg==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@accenture.onmicrosoft.com header.s=selector1-accenture-onmicrosoft-com header.b=lqxs7VFR;
+       dkim=neutral (body hash did not verify) header.i=@gmail.com header.s=20230601 header.b="VhB/D3uk";
+       arc=pass (i=1 spf=pass spfdomain=octo.com);
+       spf=fail (google.com: domain of philippe.prados@octo.com does not designate 2603:10b6:5:318::7 as permitted sender) smtp.mailfrom=philippe.prados@octo.com
+Return-Path: <philippe.prados@octo.com>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2043.outbound.protection.outlook.com. [104.47.70.43])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4f2cbefaa36si6716001173.115.2025.03.24.04.58.49
+        for <philippe.prados@gfw.accenture.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Mar 2025 04:58:49 -0700 (PDT)
+Received-SPF: fail (google.com: domain of philippe.prados@octo.com does not designate 2603:10b6:5:318::7 as permitted sender) client-ip=2603:10b6:5:318::7;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@accenture.onmicrosoft.com header.s=selector1-accenture-onmicrosoft-com header.b=lqxs7VFR;
+       dkim=neutral (body hash did not verify) header.i=@gmail.com header.s=20230601 header.b="VhB/D3uk";
+       arc=pass (i=1 spf=pass spfdomain=octo.com);
+       spf=fail (google.com: domain of philippe.prados@octo.com does not designate 2603:10b6:5:318::7 as permitted sender) smtp.mailfrom=philippe.prados@octo.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tSW3xDBH2MkjR4McuKTtjHrE/c2e0oaiw8CTLG80L7wlVfYKVoPeA36qsd+WMgd4Bkh2+1YEzXxV9pyHMs0ynUZbaUbpAYKF2M0EOIm3Qm3BJit1Q7qdIMbSDfbZaRanQJpgRZhJG/9QvIzxbG42Ap3I81xDjJjgfg52OwONmnsJnp4xjjrnAg1UE6/WeuOHl9XpR79NF4gqRldNFWZo8l5DUGHFLSV6HlJGPX21Tl2Kyn/K8A6WxTSI/Sjl2Kk47lfe/VnYG+iuYlOMF+KRb4TF0c271qgZv3N7+mXDcbIDA10wdJ9Gs41v9DJ2OVA4iz6GTPZ64Zp0VXj4jTYLUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QQC4KlJXeuh9PdFs458q+NgqUNA57whlblBl5BER8dI=;
+ b=OWNhQZG44nw29UVts3r7bdN9iHNOaN1mMPeN9CEHkrwQa8hXh8uMaTQNG6OiNX43RaCUoV1gTTx3q0ltvSwIYj3Oh0TOHk6/yAaDGFYCg1V9yOQOMyCm6iNsBYJuHLjaHwAjvj8refMWiUJrEZmtfYf77ds7ryLVwR1e5dVvEsEMs1B0LypQzp5wpim/hTzgnmUrYLwGNjd3u77Jemipwj2BoPSBiXUhiteN9D3fFdwMO6u4Aa7hmyksvcBz/okSlHqvM0rMmuMXTegN7P4ku8c6+EfjiTMPQARl1b6X9m9FRg0ROttnBtOGiTE33E8W4a0PyRPZGHoTNtoI3ET3ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=octo.com; dmarc=none; dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=accenture.onmicrosoft.com; s=selector1-accenture-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QQC4KlJXeuh9PdFs458q+NgqUNA57whlblBl5BER8dI=;
+ b=lqxs7VFRrm+inVGFlYZpnJpfT+jwpF8gn5wlkAgC6l3vDc/60aFckJNyNdTD0SOii4+u6IdhXras6FsWS5KNz9OC1xjrv+RHqvlxrzI91rEgUZjzlpf7G2WU+y08x+J2klWTfOlDB6yemgm4AtjCed7kWD7zNXmTiLb/mlu583FWD2C7RTwJwnkVkODvl4YYUO1CYMQ4L3FEQyvcfR8RohXcnHXSbFc2pVhQRmfZGHdUHP6TcFtkv7O81cxAZjWAPheEjFYSJRBHl7JSQboq0/D9FGH3e4XBjxENTV+ZkPev+WcZbaW7KEdrOer+smDB+F+qB2TME9KQvqEIrLMyMw==
+Received: from DM6P114MB1286.NAMP114.PROD.OUTLOOK.COM (2603:10b6:5:318::7) by
+ PH0P114MB1907.NAMP114.PROD.OUTLOOK.COM (2603:10b6:510:2df::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.42; Mon, 24 Mar 2025 11:58:46 +0000
+Received: from DM6P114MB1286.NAMP114.PROD.OUTLOOK.COM ([::1]) by
+ DM6P114MB1286.NAMP114.PROD.OUTLOOK.COM ([fe80::4f00:d66f:dfc2:ea3d%5]) with
+ Microsoft SMTP Server id 15.20.8534.040; Mon, 24 Mar 2025 11:58:46 +0000
+From: Philippe Prados <philippe.prados@gmail.com>
+To: "Prados, Philippe" <philippe.prados@octo.com>
+Subject: [External] EML2
+Thread-Topic: [External] EML2
+Thread-Index: AQHbnLQYzRSv15F2MEOk7lSPCO8fIg==
+Date: Mon, 24 Mar 2025 11:58:19 +0000
+Message-ID:
+ <a18ad3ab513943ac811661180c751f96@DM6P114MB1286.NAMP114.PROD.OUTLOOK.COM>
+X-MS-Has-Attach: yes
+X-MS-Exchange-Inbox-Rules-Loop: philippe.prados@octo.com
+X-MS-TNEF-Correlator:
+received-spf: Pass (protection.outlook.com: domain of gmail.com designates
+ 209.85.160.179 as permitted sender) receiver=protection.outlook.com;
+ client-ip=209.85.160.179; helo=mail-qt1-f179.google.com; pr=C
+authentication-results-original: ppops.net;	dkim=pass header.d=gmail.com
+ header.s=20230601;	spf=pass smtp.mailfrom=philippe.prados@gmail.com;
+	dmarc=pass header.from=gmail.com
+dkim-signature: v=1; a=rsa-sha256; c=relaxed/relaxed;        d=gmail.com;
+ s=20230601; t=1742817511; x=1743422311; darn=octo.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=a3eoYJr5sRdZpN0u9WBkAY+GVMPbQwDMU8BX34O7TAI=;
+        b=VhB/D3ukm4jYuHFcVKFqffgupRPdnWtY6jiphcuq7h8os/ev3h5ZYoEXZdW3d77A3T
+         /PHmoIhicAH1V2QWqxhAn68VGCspU+a8utTCjXg9Sz2oXan2rOctDcv3xw35voh1flkz
+         LAn1ag2eQkep6VfbPDRB/xOjwoqUOrcH1oVPHNv92OKINnO3nBv/csRj/6gp1gTId7Os
+         kseHjBfvNYHHtccYiHmH1Sc85izvo0s2JNwJ9tb0Ioh/A2LqSeIUqGu5yA173nEbKyUN
+         2QdhGA+W6u/hcQO8rrqpGQ6agG3Ed6i6Le6j0a62NbjRIjkwVfNgCWVbp1tdVgfGe0qV
+         +DtA==
+x-google-dkim-signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742817511; x=1743422311;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a3eoYJr5sRdZpN0u9WBkAY+GVMPbQwDMU8BX34O7TAI=;
+        b=k2a/1CTP8OnFYvFTQJn2DD0SWkM8S+UBJhSuw6eUqhN4FJs4gedunUaohZzBFQgSfJ
+         aanjhTz8ZacTCmSyXHdA5tP8OB1jPy3pQgWiHxphgOVjnznisqTgM2eEM2mxlJnJAF1R
+         yj+CL0EZnBV+3Id6EHaE1HoOp71SgcSswraru09920No1qUWYupKWr2Zz42ii5QPiVQe
+         /our2Bkz0STgwqftF6VDu3pdy2vNNBbqyNzKYqUqVH+M2VghtVefTGCDBzjIrSUI8uMp
+         SGzXuJg2dAJuZlN583QFP5SWDtDdgVYn3WGglKb66bqjPokUq3jZKWselblhhyfothR8
+         KaAQ==
+x-gm-message-state: AOJu0YwYeEmJj+Xdmk40QuPc2eqze2axYN6WQwZ8NAZ6nrajMb4nyma7
+	/+eoicDc8b/f64DmF7Uokb0XaOdteE4gST8PXqTjx6bd8wgcUc8KwlmtR5X+8HJgnzekSqFK/Ay
+	UpDFAJMpT+51iv3xxv+LQzgHK6ZZroDL0
+x-gm-gg: ASbGncuFIQ4nPGqDswwU6XmE9f7iV6conT0gnXXKqbvkLnJx5vMWOjeVSeigObcxikr
+	2L58LNPocYiIiAOajglIRRP/6YnMYoHck7ezc9yGNiNY62QzBvZok/aaIbgn7hwv0UyvXNGM9BM
+	wUbchLAFHrLiB+K3CoFaTJuWjgRqBU
+x-received: by 2002:a05:622a:298c:b0:476:74de:81e2 with SMTP id
+ d75a77b69052e-4771de8970bmr246483911cf.43.1742817511030; Mon, 24 Mar 2025
+ 04:58:31 -0700 (PDT)
+x-gm-features: AQ5f1Jrd9h5YpHSbH1ShG9xvHbKvFG3_psot24EiPK-frpG8nPnEL7xykAcUlUg
+x-clx-response: 1TFkXGBkeEQpMehcZHhIRCllEF2tSbk5vTlJeW0BnEQpYWBdtf25fR2hDaWN
+ LZBEKeE4XY1Nja3sTWH4aX14RCnlMF2NQbUxZYkZsZkluEQpDSBcHGRsRCkNZFxoRCkNJFxoEGh
+ oaEQpZTRdnZnIRCllJFxpxGhAadwYYGx5xGxkSEBp3BhgaBhoRClleF2xseREKSUYXS0lJT0ReX
+ 1hPQ0RJdUJFWV5PThEKSUcXeE9NEQpDThd7QxpFRWhoSWR+XUx4aG9GEnxCc39wUmx4YGNsXk1m
+ UxEKWFwXHwQaBBkTHAUbGgQbGhoEGxkeBBkfEBseGh8aEQpeWRdMbF8YZhEKTVwXGB0fEQpMWhd
+ pa01rEQpMRhdva2tra2sRCkJPF2tBU0weElpvTxJsEQpDWhcYGhMEEh8EGxwaBBsdExEKQl4XGx
+ EKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdtARoYYkF4X
+ xMSHREKQk4XY1Nja3sTWH4aX14RCkJMF21/bl9HaENpY0tkEQpCbBdofx9OfG1jY21ORBEKQkAX
+ emlzaVtQeAFSf20RCkJYF2lyXUAcckBZTR5yEQpNXhcbEQpaWBceEQp5QxdoQXhhU2EBGxIBaxE
+ KWUsXGxoSGxwRCnBoF2ZhfB9vTERufHJhEBoRCnBoF2ZfREBwH1xHWxNsEBkaEQpwaBdgBUlmaR
+ tJGkJhTRAZGhEKcGgXbB1obH5JUmMZU2gQGhEKcGgXb28TfW4FElpnbGUQGhEKcGgXYmtOaUFzR
+ mVNE0QQGRoRCnBoF2Z7ZkcYaWFrRnt+EBoRCnBoF2NmBUF7b0trYkEdEBkaEQpwfRdjRBh8WwFS
+ Elh4GBAZGhEKcH8XbG1ASGFEaRpfGF8QBxsfEQpwXxdmZRlMGXBZcnx6QxAHGwQcEQpwbBdkc39
+ 5fRlIRW1SXRAeEhEKcEwXYHpaSAV6BRxMGEMQGRoRCm1+FxsRClhNF0sRIA==
+x-proofpoint-guid: Qi0ooBBcNTwfRBEl8VhYUZxFRJIFtgLy
+x-proofpoint-orig-guid: Qi0ooBBcNTwfRBEl8VhYUZxFRJIFtgLy
+x-clx-shades: MLX
+x-isxt: 1
+x-isxt2: 1
+x-proofpoint-virus-version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
+x-acndmarc: Pass
+x-accdmarcpass: 1
+x-proofpoint-spam-details: rule=bulk_block_pp_notspam policy=bulk_block_pp
+ score=0 malwarescore=0 adultscore=0 suspectscore=0 mlxscore=0 mlxlogscore=568
+ lowpriorityscore=0 priorityscore=348 phishscore=0 spamscore=0 bulkscore=0
+ clxscore=234 impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503240087 domainage_hfrom=10816
+x-eopattributedmessage: 0
+x-eoptenantattributedmessage: e0793d39-0939-496d-b129-198edd916feb:0
+x-ms-exchange-skiplistedinternetsender:
+ ip=[209.85.160.179];domain=mail-qt1-f179.google.com
+x-ms-exchange-externaloriginalinternetsender:
+ ip=[209.85.160.179];domain=mail-qt1-f179.google.com
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic:
+ SJ5PEPF000001CB:EE_|PH8P114MB2079:EE_|DM6P114MB1286:EE_|PH0P114MB1907:EE_
+x-ms-office365-filtering-correlation-id: 2158d09b-cb9e-4d83-8981-08dd6acb3b63
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7093399012|69100299015|61400799027|14060799003|35042699022|48200799018|10070799003|8096899003|4053099003;
+x-ms-exchange-crosstenant-originalarrivaltime: 24 Mar 2025 11:58:42.9302 (UTC)
+x-ms-exchange-crosstenant-network-message-id:
+ 400dca5b-aaa0-490c-67d5-08dd6acb3966
+x-ms-exchange-crosstenant-id: e0793d39-0939-496d-b129-198edd916feb
+x-ms-exchange-crosstenant-authsource:
+ SJ5PEPF000001CB.namprd05.prod.outlook.com
+x-ms-exchange-crosstenant-authas: Anonymous
+x-ms-exchange-crosstenant-fromentityheader: Internet
+x-ms-exchange-transport-crosstenantheadersstamped: PH8P114MB2079
+x-ms-exchange-transport-endtoendlatency: 00:00:03.0754743
+x-ms-exchange-processed-by-bccfoldering: 15.20.8534.033
+Resent-From: <philippe.prados@octo.com>
+authentication-results: spf=pass (sender IP is 209.85.160.179)
+ smtp.mailfrom=gmail.com; dkim=fail (signature did not verify)
+ header.d=gmail.com;dmarc=pass action=none header.from=gmail.com;compauth=pass
+ reason=100
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6P114MB1286.NAMP114.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7093399012)(69100299015)(61400799027)(14060799003)(35042699022)(48200799018)(10070799003)(8096899003)(4053099003);DIR:OUT;SFP:1101;
+x-ms-exchange-parent-message-id:
+ <CAAranreo9op-LznHkXsDNJYdydLAcmN4CCONf8eKz=omuh2azA@mail.gmail.com>
+auto-submitted: auto-generated
+x-ms-exchange-generated-message-source: Mailbox Rules Agent
+x-ms-office365-filtering-correlation-id-prvs:
+ 400dca5b-aaa0-490c-67d5-08dd6acb3966
+x-ms-exchange-senderadcheck: 0
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?WJCnsHDP1yMfGTIgjgnrOkKVfb3zI0jro1EdszIlz23IEonw6hz9lDxQ8zD3?=
+ =?us-ascii?Q?r3DCXJNaadknWo6aU1WEym864w2KmriwjVT4dERrKEYMOQKwT90d+Xmh4GPZ?=
+ =?us-ascii?Q?B0QvYcLMD7weeySfq0aJEBSjMaXDoLHct4052/cDio7OwUApr3iOOC2vKfZ7?=
+ =?us-ascii?Q?R8NBxKuC5NpTu6nP4IPCydTCqa5DOl+6pW6hZI9wGEWmkB40NPuLxY69IBA4?=
+ =?us-ascii?Q?aSMWhFfLpFRwgG7ZcJYzOrDnBczeGbCtxPB/1lSBhYeR07NSoAy0Xoe9qPTP?=
+ =?us-ascii?Q?lGrGgs9n64f7hBkOah88QQrQ/Qp0NvR3mqSvdK3HVR4vbj+OQdNzUowRfq1j?=
+ =?us-ascii?Q?l25RLAtqNkTqFKloorx+8ooVYq7lO+3xlHl0ssOCvdNQssmtQIE9Yyp0KaBn?=
+ =?us-ascii?Q?S9Hb2YiqzWgAfljl4mMOS5wNWqWNaYbA8hVge1Yi24Zra+2vf8EFSybtC4mq?=
+ =?us-ascii?Q?+FX6OqSyT28bNLXiCxr9fWvUtgmZBFoIRedaG3/rO18jDxd37kUJ6PORlV5M?=
+ =?us-ascii?Q?H4kWYfFAiPmpZt8v4Q5C+64ZRqb9/yb+xzznNe+qsiQIUJ1YVCuwRH8lgIOS?=
+ =?us-ascii?Q?0G1AzyUZ/7S6cXIZk9lqLljbA9rBmhHbg5VIf0BH8Ym3NjW602p+hAAOW57o?=
+ =?us-ascii?Q?+srnKFRlcRnXSBqK0T9Pf6uAWgNdseEaWKxenKbI982krcr9MDwOA6z3Jde/?=
+ =?us-ascii?Q?xqoxgQ8MFSxeRRG13pshTqQDM9ffVin/RU1nx0+8z+l7MM/jpfTop2eM6KVB?=
+ =?us-ascii?Q?DRqDFi0tqYlqERSe13xA9T39b4wIqD8HVkv4gwDVTgiINZ5Q65PcdUFyd2EX?=
+ =?us-ascii?Q?zMWYze6+sD2f4t9nU64Gsh5bJV/gXq0J/d3WGJpjjGgqm4DgTd0WMtLb6TWC?=
+ =?us-ascii?Q?i521w8AuwD/gol0VOtMId6aG+lsmbZMYG21MVOcf4IFlZEOX/Zh/L58jvI1D?=
+ =?us-ascii?Q?4YyJJv+FPQSAIdYTLoDvVmKMEJ29NYhr9lAOvzyyS4NgCFs8UMKA4So/i51Q?=
+ =?us-ascii?Q?T1jNoHT4JTKiVDNZpV4wu7f3bkLd8wIJyBGoKKl1+R349RJfNzEhIpVitlW6?=
+ =?us-ascii?Q?CdnSVIt0XcIlp+7seWIkiMzLHpQruIJzPg2rPaoLVVdsVKU6HsbcS6v7DB/U?=
+ =?us-ascii?Q?WpQi7GQR2xnw72lvUWWVfRduLUJm3dFvKSRwG9nKeOL3qPq8l7PpbqRs/XJr?=
+ =?us-ascii?Q?w19lnDRARM0QsknsPBkiOVyhrzbrLc8Ltoyyox8eK3lQcyqMm9cme/YLJDBH?=
+ =?us-ascii?Q?U9D18NDIzBL0i1lYgtyubJlcS73imIFaQj7ae9+5rAW5qVPnXYEWkyxTwlvy?=
+ =?us-ascii?Q?40kWIBHVcLtZUs573yj1Cxq88ECH1baICOFi2Kd6vVDTtI7h5nAgVrz4PQ0b?=
+ =?us-ascii?Q?HA4ol88VjLJuDKwOuKpijRQwwSfu?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ inj51+X0B57OqP+wH/bO27I0YeNl+QpbL4vZapTSMTrQWEfPWFm42tSLVOEw/l6DaQ1ZcsK2TDTb1VoesJNzxX6DJ0hTW0ctT/fafaVU06ZeDafOMyFHts3oZtqh1+IKctmiI57ysJhJ1TEMgpQvvDFSVOVOWhRx6i1RO2dirjDCEl0gGjanT1Q7xRXzys5Sc27PpRbgAhE5signJgL+ThByimaVUcSXA+qZ50hPP64SDYjoTL+R1pqH5Ol5RfzToNmTwBrrC+1nHZVOZcOWn0QN+YouVc/dtAiDgS1DE5qxiXH6uQYlag4LG2frPkH+
+Content-Type: multipart/mixed;
+	boundary="_004_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_"
+MIME-Version: 1.0
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	rINxOF8uHOyMGrhY75qpAOng/675aOSPl5S32EMGMom/ZXL2kS8wxZpgJRBXGgsIqZjqR0551zBUrabVWaDWbKlubtsVNfNVm45vvn+2zjfZkahTgqQGkppiJ0nwxfSW8pJRKN6PsYgAl4P2nkdc2Pzfv74r6M7SGcGBo0tuXhsyvXDpLZnwadM0SFYLTLydMa+o3TNUVmo1aQn2wXHIqsAGUbXNtObpFDNHGrHd5HCdj/ev5p4UaWZrUtOLPTdkH7f2uAryS0IOCIYQV9CJ/musuINaHKZeKyW0OPVOJoHfC/D/KRVMZoswNg6cYD3l1E/VaHeZ3YJVZbMpM9/OHbZvsqF4oShqsU3CBLEjV6zoeL4vMJyCvcK/lIE7CRzdjlqJKosUEhmh5NtjfKRIlGbwfwXSsOV1hlr3ir+g3QbR4DkX0PKeXm7UuzwybTuF1AZ3lPu0EMVkupeCgLnDZC3rx6glTOtoDubdrAf2AfyYBxUZNUHpSbHqrm1bUHz4lLzgmX1oMz4EioY/H/zcEoigzKYMYGRdH+Ag92bHRlvFY5LpSHosfF47txmmY/dGK1Idr1PlFQhd7XuuSJJsaNJRuRQRp/ayaspgGHbjP7Q=
+X-OriginatorOrg: octo.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CB.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2158d09b-cb9e-4d83-8981-08dd6acb3b63
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2025 11:58:46.3623
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0793d39-0939-496d-b129-198edd916feb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0P114MB1907
+
+--_004_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_
+Content-Type: multipart/alternative;
+	boundary="_000_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_"
+
+--_000_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+External email. Inspect before opening any links or attachments.
+
+[https://cdn-icons-png.flaticon.com/512/484/484167.png]
+
+Company Contact Country
+Alfreds Futterkiste     Maria Anders    Germany
+Centro comercial Moctezuma      Francisco Chang Mexico
+Ernst Handel    Roland Mendel   Austria
+Island Trading  Helen Bennett   UK
+Laughing Bacchus Winecellars    Yoshi Tannamuri Canada
+Magazzini Alimentari Riuniti    Giovanni Rovelli        Italy
+
+Cordialement
+
+Cordialement
+
+Philippe Prados
+
+--_000_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_
+Content-Type: text/html; charset="us-ascii"
+Content-ID: <781D76848279A14BBDA2C400F0FC6B23@NAMP114.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div>
+<table align=3D"center" bordercolor=3D"Red" border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"center" height=3D"0" width=3D"85%" bgcolor=3D"#fc7673"><font f=
+ace=3D"Calibri" color=3D"#000000"><b>External email. Inspect before opening=
+ any links or attachments.</b></font></td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<div dir=3D"ltr">
+<div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><img s=
+rc=3D"https://cdn-icons-png.flaticon.com/512/484/484167.png" width=3D"512" =
+height=3D"512" class=3D"gmail-CToWUd gmail-a6T" tabindex=3D"0" style=3D"fon=
+t-family: Arial, Helvetica, sans-serif; cursor: pointer; outline: 0px;"></d=
+iv>
+<div><br>
+</div>
+<div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"></div>
+<table id=3D"m_-8253641471341006546gmail-customers" style=3D"box-sizing:inh=
+erit;border-collapse:collapse;border-spacing:0px;width:829.525px;border:1px=
+ solid rgb(204,204,204);margin:20px 0px;font-family:arial,sans-serif;color:=
+rgb(0,0,0);font-size:15px">
+<tbody style=3D"box-sizing:inherit">
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221)">
+<th style=3D"box-sizing:inherit;padding:8px;text-align:left;vertical-align:=
+top;border:1px solid rgb(221,221,221)">
+Company</th>
+<th style=3D"box-sizing:inherit;padding:8px;text-align:left;vertical-align:=
+top;border:1px solid rgb(221,221,221)">
+Contact</th>
+<th style=3D"box-sizing:inherit;padding:8px;text-align:left;vertical-align:=
+top;border:1px solid rgb(221,221,221)">
+Country</th>
+</tr>
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221);ba=
+ckground-color:rgb(231,233,235)">
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Alfreds Futterkiste</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Maria Anders</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Germany</td>
+</tr>
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221)">
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Centro comercial Moctezuma</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Francisco Chang</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Mexico</td>
+</tr>
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221);ba=
+ckground-color:rgb(231,233,235)">
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Ernst Handel</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Roland Mendel</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Austria</td>
+</tr>
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221)">
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Island Trading</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Helen Bennett</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+UK</td>
+</tr>
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221);ba=
+ckground-color:rgb(231,233,235)">
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Laughing Bacchus Winecellars</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Yoshi Tannamuri</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Canada</td>
+</tr>
+<tr style=3D"box-sizing:inherit;border-bottom:1px solid rgb(221,221,221)">
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Magazzini Alimentari Riuniti</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Giovanni Rovelli</td>
+<td style=3D"box-sizing:inherit;padding:8px;vertical-align:top;border:1px s=
+olid rgb(221,221,221)">
+Italy</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<div>
+<div dir=3D"ltr" class=3D"gmail_signature">
+<div dir=3D"ltr">Cordialement<font color=3D"#888888"><br>
+</font></div>
+</div>
+</div>
+<br clear=3D"all">
+</div>
+<div>
+<div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signatur=
+e">
+<div dir=3D"ltr">Cordialement<br>
+<br>
+Philippe Prados<br>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_--
+
+--_004_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_
+Content-Type: text/plain; name="hello.txt"
+Content-Description: hello.txt
+Content-Disposition: attachment; filename="hello.txt"; size=6;
+	creation-date="Mon, 24 Mar 2025 11:58:46 GMT";
+	modification-date="Mon, 24 Mar 2025 11:58:46 GMT"
+Content-ID: <f_m8n0je0j0>
+Content-Transfer-Encoding: base64
+
+aGVsbG8K
+
+--_004_a18ad3ab513943ac811661180c751f96DM6P114MB1286NAMP114PRO_--
